@@ -4,7 +4,8 @@ kind: Kustomization
 
 helmCharts:
   - name: crossplane
-    repo: https://charts.crossplane.io/stable
+    # repo: https://charts.crossplane.io/stable
+    repo: ./charts/crossplane
     releaseName: crossplane
     namespace: crossplane-test
     # version: 0.1.0 # use latest
