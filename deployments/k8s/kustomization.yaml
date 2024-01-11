@@ -3,20 +3,32 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 helmCharts:
-  - name: crossplane
-    # repo: https://charts.crossplane.io/stable
-    repo: ./charts/crossplane
-    releaseName: crossplane
-    namespace: crossplane-test
-    # version: 0.1.0 # use latest
-    includeCRDs: false #no CRD in the chart, they are created by crossplane Operator
-    valuesMerge: override
+  - name: minecraft
+    includeCRDs: false
     valuesInline:
-      args: 
-        - --debug
-      serviceAccount:
-        customAnnotations: 
-          iam.gke.io/gcp-service-account: crossplane@me.iam.gserviceaccount.com
+      minecraftServer:
+        eula: true
+        difficulty: hard
+        rcon:
+          enabled: true
+    releaseName: moria
+    version: 3.1.3
+    repo: ./charts/minecraft-3.1.3/minecraft
+
+  # - name: crossplane
+  #   # repo: https://charts.crossplane.io/stable
+  #   repo: ./charts/crossplane
+  #   releaseName: crossplane
+  #   namespace: crossplane-test
+  #   # version: 0.1.0 # use latest
+  #   includeCRDs: false #no CRD in the chart, they are created by crossplane Operator
+  #   valuesMerge: override
+  #   valuesInline:
+  #     args: 
+  #       - --debug
+  #     serviceAccount:
+  #       customAnnotations: 
+  #         iam.gke.io/gcp-service-account: crossplane@me.iam.gserviceaccount.com
       # webhooks:
       #   enabled: false
       # rbacManager:
