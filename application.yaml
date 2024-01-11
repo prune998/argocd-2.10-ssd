@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/compare-options: ServerSideDiff=true,IncludeMutationWebhook=true
+  name: server-side-diff-error
+  namespace: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: server-side-diff-error
+  ignoreDifferences:
+  - group: apps
+    jqPathExpressions:
+    - .spec.template.spec.containers[].env[].valueFrom.resourceFieldRef.divisor
+    - .spec.template.spec.initContainers[].env[].valueFrom.resourceFieldRef.divisor
+    kind: Deployment
+  project: default
+  source:
+    path: deployments/k8s
+    repoURL: https://github.com/prune998/argocd-2.10-ssd.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
