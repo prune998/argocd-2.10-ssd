@@ -17,10 +17,10 @@ helmCharts:
       serviceAccount:
         customAnnotations: 
           iam.gke.io/gcp-service-account: crossplane@me.iam.gserviceaccount.com
-      webhooks:
-        enabled: false
-      rbacManager:
-        deploy: false
+      # webhooks:
+      #   enabled: false
+      # rbacManager:
+      #   deploy: false
 
 resources:
   - ns.yaml
