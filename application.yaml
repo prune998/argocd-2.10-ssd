@@ -8,7 +8,7 @@ metadata:
 spec:
   destination:
     name: in-cluster
-    namespace: server-side-diff-error
+    namespace: crossplane-test
   ignoreDifferences:
   - group: apps
     jqPathExpressions:

@@ -5,5 +5,5 @@ metadata:
     argocd.argoproj.io/sync-options: ServerSideApply=true
     argocd.argoproj.io/sync-wave: "0"
   labels:
-    kubernetes.io/metadata.name: crossplane
-  name: crossplane
+    kubernetes.io/metadata.name: crossplane-test
+  name: crossplane-test
